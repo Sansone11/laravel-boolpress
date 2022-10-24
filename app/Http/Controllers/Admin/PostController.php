@@ -45,13 +45,17 @@ class PostController extends Controller
             'title' => 'required|max:255|min:5',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'exists:tags,id',
+            'tags.*' => 'exists:tags,id',
         ]);
-        // $slug= Str::slug($params['title']);
-
-
-        $params['slug'] = Post::getUniqueSlugFromTitle($params['title']);
+        
+        $params['slug'] = Post::getUniqueSlugFrom($params['title']);
         $post = Post::create($params);
+       
+
+    if(array_key_exists('tags', $params)){
+        $tags = $params['tags'];
+        $post->tags()->sync($tags);
+    }
         return redirect()->route('admin.posts.show', $post);
     }
 
@@ -75,7 +79,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::orderBy('name', 'asc')->get();
-        return view('admin.posts.edit', compact('categories', 'post'));
+        $tags = Tag::orderBy('name','asc')->get();
+        return view('admin.posts.edit', compact('categories', 'post','tags'));
     }
 
     /**
@@ -90,7 +95,8 @@ class PostController extends Controller
         $params = $request->validate([
             'title' => 'required|max:255|min:5',
             'content' => 'required',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'tags.*' => 'exists:tags,id',
         ]);
 
         if ($params['title'] !== $post->title) {
@@ -98,6 +104,11 @@ class PostController extends Controller
         }
 
         $post->update($params);
+        if (array_key_exists('tags',$params)){
+            $post->tags()->sync($params['tags']);
+        }else{
+            $post->tags()->detach();
+        }
 
         return redirect()->route('admin.posts.show', $post);
     }

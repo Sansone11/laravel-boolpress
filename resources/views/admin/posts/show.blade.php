@@ -12,9 +12,11 @@
                 <div>
                   <p>Tags</p>
                     <ul>
-                        @foreach ($post->tags as $tag)
+                        @forelse ($post->tags as $tag)
                             <li>{{ $tag->name }}</li>
-                        @endforeach
+                            @empty
+                            <li>nessun tag</li>
+                        @endforelse
                     </ul>
                 </div>
                 <ul class="gap-2">

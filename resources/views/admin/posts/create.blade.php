@@ -51,7 +51,7 @@
                         <label class="d-block" for="content">Tag :</label>
                         @foreach ($tags as $tag)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="tags[]" type="checkbox" id="tag{{$tag->id}}" value="{{$tag->id}}">
+                                <input class="form-check-input" name="tags[]" @if (in_array($tag->id,old('tags',[]))) checked @endif type="checkbox" id="tag{{$tag->id}}" value="{{$tag->id}}">
                                 <label class="form-check-label" for="tag{{$tag->id}}">{{$tag->name}}</label>
                             </div>
                         @endforeach
