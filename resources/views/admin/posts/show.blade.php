@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
+            @if ($post->cover)
+                <div class="col-12">
+                    <img src="{{ asset('storage/' . $post->cover) }}" width="400" alt="">
+                </div>
+            @endif
             <div class="col-8">
                 <h1>{{ $post->title }}</h1>
                 <p>{{ $post->slug }}</p>
@@ -10,11 +15,11 @@
                     <p>Categoria{{ $post->category->name }}</p>
                 @endif
                 <div>
-                  <p>Tags</p>
+                    <p>Tags</p>
                     <ul>
                         @forelse ($post->tags as $tag)
                             <li>{{ $tag->name }}</li>
-                            @empty
+                        @empty
                             <li>nessun tag</li>
                         @endforelse
                     </ul>
