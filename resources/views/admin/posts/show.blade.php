@@ -5,7 +5,7 @@
         <div class="row">
             @if ($post->cover)
                 <div class="col-12">
-                    <img src="{{ asset('storage/' . $post->cover) }}" width="400" alt="">
+                    <img src="{{ asset('images/' . $post->cover) }}" width="400" alt="">
                 </div>
             @endif
             <div class="col-8">
