@@ -15,10 +15,20 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('admin.posts.store') }}" method="POST">
+                <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
 
                     @csrf
 
+                    <div class="custom-file @error('image') is-invalid @endif">
+                        <label for="image">Immagine Copertina Articolo</label>
+                        <input type="file" name="image" class="custom-file-input" id="image" required>
+                        <label class="custom-file-label" for="image">Scegli file...</label>
+                        @error('image')
+                            <div id="image" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                     <div class="form-group">
                         <label for="title">Titolo</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
@@ -51,8 +61,10 @@
                         <label class="d-block" for="content">Tag :</label>
                         @foreach ($tags as $tag)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="tags[]" @if (in_array($tag->id,old('tags',[]))) checked @endif type="checkbox" id="tag{{$tag->id}}" value="{{$tag->id}}">
-                                <label class="form-check-label" for="tag{{$tag->id}}">{{$tag->name}}</label>
+                                <input class="form-check-input" name="tags[]"
+                                    @if (in_array($tag->id, old('tags', []))) checked @endif type="checkbox"
+                                    id="tag{{ $tag->id }}" value="{{ $tag->id }}">
+                                <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->name }}</label>
                             </div>
                         @endforeach
                     </div>
