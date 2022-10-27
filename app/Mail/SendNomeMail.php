@@ -30,6 +30,6 @@ class SendNomeMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.postcreated');
+        return $this->markdown('mails.postcreated');
     }
 }
