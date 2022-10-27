@@ -42,4 +42,10 @@ class Post extends Model
 
         return $slug;
     }
+
+    // public function getCoverAttribute ($value){
+        
+    //     return asset('images/'. $value);
+
+    // } 
 }
