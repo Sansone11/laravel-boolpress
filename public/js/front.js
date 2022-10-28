@@ -1978,12 +1978,25 @@ var render = function render() {
     staticClass: "relative rounded-lg overflow-hidden"
   }, [_vm.post.cover ? _c("img", {
     attrs: {
-      src: "/images/".concat(_vm.post.cover),
+      src: _vm.post.cover_path,
       alt: ""
     }
   }) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "p-4 mt-2"
-  }, [_c("h3", [_vm._v(_vm._s(_vm.post.title))])])]);
+  }, [_c("h3", {
+    staticClass: "text-xl"
+  }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _vm.post.category ? _c("p", {
+    staticClass: "text-amber-600 text-sm my-1"
+  }, [_vm._v(_vm._s(_vm.post.category.name))]) : _vm._e(), _vm._v(" "), _c("ul", {
+    staticClass: "flex gap-4 py-2"
+  }, _vm._l(_vm.post.tags, function (tag) {
+    return _c("li", {
+      key: tag.id,
+      staticClass: "rounded-full hover:bg-amber-400 bg-gray-200 px-2 py-1 text-xs"
+    }, [_vm._v("\n                " + _vm._s(tag.name) + "\n            ")]);
+  }), 0), _vm._v(" "), _c("p", {
+    staticClass: "text-sm"
+  }, [_vm._v(_vm._s(_vm.post.date))])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
