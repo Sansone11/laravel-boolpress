@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -18,12 +16,26 @@
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+
+    
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          container: {
+            center: true,
+          }
+        }
+      }
+    }
+  </script>
 </head>
 <body>
-    <div id="app">
-                       
-        
-    </div>
-    <script src="{{ asset('js/front.js') }}"></script>
+
+  <div id="app"></div>
+
+  <!-- Scripts -->
+  <script src="{{ asset('js/front.js') }}" defer></script>
 </body>
 </html>
