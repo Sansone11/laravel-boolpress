@@ -10,7 +10,11 @@
         <section class="my-12">
             <div class="container">
                 <div class="grid grid-cols-3 gap-8">
-                    <PostCard v-for="post in posts" :key="post.id" :post="post" />
+                    <router-link :to="{name:'posts.show',params:{slug:post.slug}}" v-for="post in posts"
+                         :key="post.id">
+                        <PostCard :post="post" />
+                    </router-link>
+                    <!-- <PostCard v-for="post in posts" :key="post.id" :post="post" /> -->
                 </div>
 
             </div>
