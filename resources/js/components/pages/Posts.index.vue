@@ -54,7 +54,7 @@ export default {
     },
     data() {
         return {
-            title: 'Bentornato JS',
+            title: '',
             posts: [],
             currentPage: 1,
             lastPage: 0,

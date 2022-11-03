@@ -2029,7 +2029,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      title: 'Bentornato JS',
+      title: '',
       posts: [],
       currentPage: 1,
       lastPage: 0,

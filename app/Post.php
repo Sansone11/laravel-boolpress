@@ -46,7 +46,7 @@ class Post extends Model
 
      public function getCoverPathAttribute (){
         
-        return $this->cover ? Storage::disk('images')->url( $this->cover): null ;
+        return $this->cover ? Storage::disk('images')->url( $this->cover ) : null ;
 
      } 
 
